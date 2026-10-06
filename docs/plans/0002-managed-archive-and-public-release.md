@@ -126,3 +126,7 @@ notification, pruning, acquisition or public publication action by itself.
 The update runner persists acquisition backoff across processes. A controlled source qualification may set `force_source_checks` to bypass collection cadence for that run; disabled collections and source backoff remain enforced. Remove that qualification setting afterward. Fixture qualification includes discovery and acquisition of a new multi-item source record, private review defaults, and duplicate-free replay.
 
 Public-release qualification includes a readiness monitor bound to the exact release revision and a fresh restore with a non-login public role. The owner separately authorized #33 ingress activation, and #34 actual-domain qualification is complete. The #30 access approval remains limited to the exact 26 reviewed variants.
+
+## Bounded backup follow-up
+
+The opt-in [bounded backup mode](../runbooks/bounded-backups.md) retains complete snapshots and shares verified read-only files between backups. Explicit snapshot/staging/independent-store caps refuse unsafe growth without pruning evidence. Source qualification and live capacity/restore requirements are tracked in Anarchist Archive #56; live jobs retain their existing behavior until reviewed activation.
