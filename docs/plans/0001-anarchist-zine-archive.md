@@ -203,3 +203,12 @@ The owner selected **A — Front Cover** on October 3. The [selected interface](
 ## Full collection follow-up
 
 The owner authorized automatic archival access for the complete Anarchist source. [The full-collection plan](0004-full-anarchist-collection.md) supersedes the original pilot scope and individual approval policy for this collection only.
+
+## Print viewer follow-up
+
+The viewer feedback issue adds creator/original-date filters before pagination,
+grid/table browsing, collection-scoped local favorites, current document/variant/
+page sharing, and reading focus with Escape. Full source dates support bounds;
+partial and unknown dates remain visible when bounds are absent. Editorial date
+corrections do not replace the original source date. Existing covers, PDF text,
+search, downloads, rights and product-owned layout remain available.

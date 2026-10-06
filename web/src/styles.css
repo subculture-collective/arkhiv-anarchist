@@ -239,3 +239,16 @@ summary:focus-visible {
 .access-policy { border-left: 4px solid var(--accent); padding: 8px 20px; background: #e1dacd; line-height: 1.6; }
 .about { border-top: 1px solid #b5ae9f; margin-top: 48px; padding-top: 28px; max-width: 850px; line-height: 1.7; }
 .rights-label { font-size: 14px; }
+
+/* Product-owned catalog tools and reading focus. */
+.publication-table-wrap { overflow-x:auto; margin:24px 0; }
+.publication-table-wrap table { width:100%; border-collapse:collapse; }
+.publication-table-wrap th,.publication-table-wrap td { padding:12px; border-bottom:1px solid currentColor; text-align:left; vertical-align:top; }
+.viewer-preferences { margin:32px 0; padding:20px; border:1px solid currentColor; overflow-wrap:anywhere; }
+.viewer-preferences li { margin:12px 0; }
+.share-controls { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:16px 0; }
+.share-controls label { max-width:100%; }
+.share-controls input { width:100%; }
+.reading-focus .masthead,.reading-focus .collection-nav,.reading-focus .about,.reading-focus footer { display:none; }
+.reading-focus .reader { margin:24px auto; }
+.filters { flex-wrap:wrap; }
