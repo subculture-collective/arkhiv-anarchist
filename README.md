@@ -128,3 +128,5 @@ verified native-to-canonical identity mapping and a separate provider decision.
 No acquisition, approval or deployment changes are included.
 
 The [viewer qualification report](docs/reports/viewer-feedback-2026-10-06.md) records local verification and browser evidence.
+
+The [curator workflow plan](docs/plans/0004-curation-and-preservation-workflows.md) records review authority, preservation operations and measured OCR limits.
