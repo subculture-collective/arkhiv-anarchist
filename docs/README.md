@@ -29,3 +29,6 @@ The template-maintenance documents below are inherited reference material.
 - `template-maintenance.md` — how to maintain this base and propagate changes
 
 Keep docs current, concise, and linked from this hub.
+
+- [Bounded backup mode](runbooks/bounded-backups.md)
+- [Bounded backup source qualification, October 6](reports/bounded-backups-20261006.md)
