@@ -13,10 +13,12 @@ from runner import Runner, atomic, verify_backup
 def cleanup(r, compose, project):
     if not re.fullmatch(r'arkhiv-drill-\d{8}t\d{12}z', project):
         raise ValueError('cleanup requires an exact generated restore project')
-    r.deadline = time.monotonic() + 60
+    cleanup_deadline = time.monotonic() + 60
+    r.deadline = cleanup_deadline - 30
     try:
         r.execute(compose + ['down', '--volumes', '--remove-orphans'])
     finally:
+        r.deadline = cleanup_deadline
         containers = r.execute(['docker', 'ps', '--all', '--quiet', '--no-trunc', '--filter', 'label=com.docker.compose.project=' + project]).split()
         if any(not re.fullmatch(r'[a-f0-9]{64}', identity) for identity in containers):
             raise ValueError('unexpected restore container identity')

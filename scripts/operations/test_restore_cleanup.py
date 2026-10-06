@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from restore_drill import cleanup
 
 PROJECT = 'arkhiv-drill-20261006t064706609209z'
@@ -41,3 +42,15 @@ class RestoreCleanupTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             cleanup(Operations(), ['docker', 'compose'], PROJECT)
         self.assertFalse(any(args[:2] == ['docker', 'rm'] for args in commands))
+
+    def test_compose_timeout_leaves_a_separate_cleanup_budget(self):
+        deadlines = []
+        class Operations:
+            def execute(self, args):
+                deadlines.append(self.deadline)
+                if 'down' in args:
+                    raise TimeoutError('compose exhausted its budget')
+                return IDENTITY if args[:2] == ['docker', 'ps'] else ''
+        with patch('restore_drill.time.monotonic', return_value=100), self.assertRaises(TimeoutError):
+            cleanup(Operations(), ['docker', 'compose'], PROJECT)
+        self.assertEqual(deadlines, [130, 160, 160])
