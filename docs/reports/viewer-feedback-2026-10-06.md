@@ -15,3 +15,19 @@ The owned preview at loopback port 43141 used synthetic collections and original
 A same-origin 390 CSS-pixel iframe in the native browser verified the narrow layout; this is desktop-browser responsive evidence, not physical-device evidence. The document width was 375 pixels, fit-width canvas 340 by 440, and text search found the page-2 phrase “Solidarity knownword appears on page two.” Original downloads returned HTTP 200 with attachment disposition and 895 bytes, SHA-256 `a5168c95e47d5ffdaae2d137f0280a5a2dde4f5888b6b8a487500fc8548d139f`. Rights, source references, preservation details and original downloads remained available.
 
 The synthetic preview is stopped with its development data retained. This report does not claim public activation, complete retained-corpus qualification, hosted CI, or account-provider activation.
+
+
+## Published follow-up adoption
+
+The consumer now independently pins SDK 0.4.0 and core 0.3.0 from Arkhiv source
+39a49fb45005b001e14218823c22ed19c3de1177. SDK registry bytes were independently
+downloaded and verified against its SHA-256 receipt. The immutable core receipt
+updates the compatibility browse filters and optional media-specific chat storage.
+The native backend and current deployment remain independently owned; this pin
+update does not perform live migration or activate account/chat hosting.
+
+Full `make verify` passed in an isolated T3 snapshot for these exact dependency
+locks and core receipt. The print dump/restore checks used an explicitly
+disposable PostgreSQL 15 service matching the tools image's pg_dump client; the
+earlier PostgreSQL 17 client mismatch was a launcher failure, not a passing test.
+Hosted CI remains owner-waived during the Kvant outage.
