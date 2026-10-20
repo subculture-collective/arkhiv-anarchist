@@ -389,6 +389,7 @@ export default function App() {
       <footer>
         <span>Anarchist Archive · A home for independent archives</span>
         <a href="#about">About, rights and contact</a>
+        <a href="https://subcult.tv/support">Support SUBCULT’s archive software</a>
       </footer>
     </main>
   );
