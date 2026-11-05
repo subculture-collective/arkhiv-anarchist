@@ -29,3 +29,11 @@ the key and must rotate it by 2027-02-03. Register and test the host profile bef
 merge; private receipts retain image IDs, diagnostics and rollback commands.
 After rollout, compare public HTML/branding/build assets with the running image
 and check catalog and document access separately from deployment status.
+
+The original dependency/condition chain produced green PR and main runs with
+both image publication and deployment skipped. Delivery now has a direct
+dependency on verification; main-only credential guards stay at step level. The
+same job builds and validates the reader on PRs, then publishes the exact built
+reader and existing API role image before main activation. Main retries skip
+publication and reuse an accepted artifact. A green overall run requires a
+separate readback of the build/publication/deployment steps and live revision.

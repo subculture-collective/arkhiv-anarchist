@@ -41,37 +41,9 @@ jobs:
       - name: Isolated browser and PostgreSQL 17 smoke
         run: make test-browser
 
-  image:
-    needs: verify
-    if: github.server_url == 'https://git.subcult.tv' && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build and publish the deployable images for this revision
-        env:
-          REGISTRY_PAT: ${{ secrets.REGISTRY_PAT }}
-          REGISTRY: git.subcult.tv/subculture-collective
-        run: |
-          set -euo pipefail
-          test -n "$REGISTRY_PAT"
-          auth_dir=$(mktemp -d)
-          trap 'rm -rf "$auth_dir"' EXIT
-          chmod 700 "$auth_dir"
-          export DOCKER_BUILDKIT=1 DOCKER_CONFIG="$auth_dir/docker"
-          docker build -f web/Dockerfile --label "org.opencontainers.image.revision=$GITHUB_SHA" -t "$REGISTRY/arkhiv-anarchist-web:$GITHUB_SHA" web
-          docker build -f backend/Dockerfile --label "org.opencontainers.image.revision=$GITHUB_SHA" -t "$REGISTRY/arkhiv-anarchist-api:$GITHUB_SHA" .
-          IMAGES="$REGISTRY/arkhiv-anarchist-web:$GITHUB_SHA $REGISTRY/arkhiv-anarchist-api:$GITHUB_SHA"
-          printf '%s' "$REGISTRY_PAT" | docker login git.subcult.tv --username subcult-agent --password-stdin
-          for image in $IMAGES; do
-            docker push "$image"
-            echo "published $(docker inspect --format '{{index .RepoDigests 0}}' "$image")"
-          done
-
   frontend:
     name: Deploy verified public reader to Almaz
-    needs: [verify, image]
-    if: always() && needs.verify.result == 'success' && (needs.image.result == 'success' || (github.event_name == 'pull_request' && needs.image.result == 'skipped'))
+    needs: verify
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
@@ -123,6 +95,30 @@ jobs:
           docker build -f web/Dockerfile --label "org.opencontainers.image.revision=$DEPLOY_REVISION" \
             --label "org.opencontainers.image.source=https://git.subcult.tv/subculture-collective/arkhiv-anarchist" -t "$image" web
           docker run --rm --network none --add-host api:127.0.0.1 --entrypoint nginx "$image" -t
+      - name: Publish the verified frontend and existing API role image
+        if: >-
+          github.server_url == 'https://git.subcult.tv' &&
+          github.ref == 'refs/heads/main' &&
+          (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+          steps.artifact.outputs.available != 'true'
+        shell: bash
+        env:
+          REGISTRY_PAT: ${{ secrets.REGISTRY_PAT }}
+          REGISTRY: git.subcult.tv/subculture-collective
+        run: |
+          set -euo pipefail
+          test -n "$REGISTRY_PAT"
+          auth_dir=$(mktemp -d)
+          trap 'rm -rf "$auth_dir"' EXIT
+          chmod 700 "$auth_dir"
+          export DOCKER_BUILDKIT=1 DOCKER_CONFIG="$auth_dir/docker"
+          docker tag "fleet-deploy/anarchist-archive/public-web:$DEPLOY_REVISION" "$REGISTRY/arkhiv-anarchist-web:$DEPLOY_REVISION"
+          docker build -f backend/Dockerfile --label "org.opencontainers.image.revision=$DEPLOY_REVISION" -t "$REGISTRY/arkhiv-anarchist-api:$DEPLOY_REVISION" .
+          printf '%s' "$REGISTRY_PAT" | docker login git.subcult.tv --username subcult-agent --password-stdin
+          for image in "$REGISTRY/arkhiv-anarchist-web:$DEPLOY_REVISION" "$REGISTRY/arkhiv-anarchist-api:$DEPLOY_REVISION"; do
+            docker push "$image"
+            printf 'published %s\n' "$(docker inspect --format '{{index .RepoDigests 0}}' "$image")"
+          done
       - name: Deploy the built image and verify public HTML
         if: >-
           github.server_url == 'https://git.subcult.tv' &&
