@@ -212,3 +212,9 @@ page sharing, and reading focus with Escape. Full source dates support bounds;
 partial and unknown dates remain visible when bounds are absent. Editorial date
 corrections do not replace the original source date. Existing covers, PDF text,
 search, downloads, rights and product-owned layout remain available.
+
+## Automatic frontend delivery
+
+The existing public reader gains [verified main CI deployment](../automatic-frontend-deployment.md)
+with the selected collection export retained in this consumer repository. The
+archive data, API release, acquisition and preservation procedures stay separate.

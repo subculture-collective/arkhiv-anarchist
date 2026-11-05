@@ -1,3 +1,5 @@
+![Anarchist Archive](docs/brand/anarchist-archive/readme-lockup.png)
+
 # Anarchist Archive
 
 Anarchist Archive acquires explicitly selected document files, preserves their original bytes,
@@ -134,3 +136,7 @@ The [curator workflow plan](docs/plans/0004-curation-and-preservation-workflows.
 ## Bounded backup follow-up
 
 The opt-in [bounded backup mode](docs/runbooks/bounded-backups.md) retains complete snapshots and shares verified read-only files between backups. Explicit snapshot/staging/independent-store caps refuse unsafe growth without pruning evidence. Source qualification and live capacity/restore requirements are tracked in Anarchist Archive #56; live jobs retain their existing behavior until reviewed activation.
+
+The [automatic frontend deployment](docs/automatic-frontend-deployment.md) path
+retains the selected collection identity and delivers verified main builds to
+the existing public Almaz reader. Core/data releases keep their own procedures.
