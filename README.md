@@ -1,142 +1,127 @@
-![Anarchist Archive](docs/brand/anarchist-archive/readme-lockup.png)
-
 # Anarchist Archive
 
-Anarchist Archive acquires explicitly selected document files, preserves their original bytes,
-and serves branded catalogs with local PDF reading and downloads. The first
-collection is the Anarchist Zine Archive.
+![Anarchist Archive identity](docs/brand/anarchist-archive/readme-lockup.png)
 
-The implementation includes a PostgreSQL catalog, operator CLI, bounded resumable
-acquisition, editorial review, text and cover extraction, metadata/page search,
-and backup/restore. The initial manifest selects 25 documents, 26 PDF variants,
-and 17 matching OCR companions from Internet Archive's `ZineArchive` item.
-The [private pilot qualification](docs/reports/pilot-qualification-20261002.md) passed:
-all originals were verified, the independent NUC backup was restored, and on-site
-reading/search/downloads worked with Archive.org blocked. The initial implementation merged in PR #19; hardening and the qualification
-report merged in [PR #20](https://git.subcult.tv/subculture-collective/arkhiv-alpha/pulls/20).
-The owner-approved first collection moves from arkhiv.subcult.tv to [anarchist-archive.subcult.tv](https://anarchist-archive.subcult.tv) during the reviewed rollout. Its full selected source now has 699 documents and 700 PDF variants available for public reading/downloads with unknown rights, source attribution, correction/removal contact and no asserted reuse license.
+Preserved zines and pamphlets with their source records, a catalog, an on-site reader and downloads. The first collection is the Anarchist Zine Archive: zines on mutual aid, abolition, ecology, work and anarchist thought, preserved from Internet Archive's `ZineArchive` item.
 
-The [next delivery plan](docs/plans/0002-managed-archive-and-public-release.md)
-covers merged-revision rollout, scheduled preservation and active-source updates,
-public release, and a second real archive. Managed jobs are installed and initially qualified. A-Info adds 15 privately reviewed issues; a fresh independent NUC restore verified all 40 documents/41 PDF variants with source access blocked. Gitea #21–#38 records the separate implementation and live evidence.
+Every document keeps its original file, its source history and a note on rights. The rights are unknown, and the archive does not grant any reuse license. Many titles come from source filenames and are provisional catalog labels, not researched bibliographic titles. To ask for a correction or removal, write to info@subcult.tv.
 
-## Development
+Public site: https://anarchist-archive.subcult.tv
 
-Stack: Go 1.26+, Node 24, pnpm 10.33.0, React/Vite, PostgreSQL 17, Docker Compose.
+This repository is SUBCULT's Arkhiv archive software with the Anarchist Archive's collections, catalog design and deployment. A second collection, A-Info zines from São Paulo, is configured but not public.
+
+## Features
+
+For readers:
+
+- A catalog of covers with search across metadata and page text, subject filters and a choice of layouts.
+- Document pages with editions, pages, source details and rights notes.
+- An on-site PDF reader (PDF.js) with a reading focus mode, and search inside documents that have extracted text.
+- Downloads of the original preserved files.
+- Favorites saved in your browser, and share links.
+
+For operators, the `arkhiv` CLI:
+
+- Plans and acquires explicitly selected source files in bounded, resumable batches, and keeps the original bytes with their SHA-256 hashes.
+- Extracts text and cover images, and supports editorial edits and grouping of editions without changing the source metadata.
+- Refreshes the source inventory and queues added, changed or removed files for review instead of publishing them.
+- Approves or withdraws public access per file from a reviewed manifest, or automatically for a collection whose configuration sets a verified-automatic policy, after hash and reader checks pass.
+- Audits stored files, and backs up and restores the catalog and archive.
+
+## Quick start
+
+Requirements: Go 1.26, Node.js 24, pnpm 10.33.0 and Docker with Compose.
+
+Run everything in containers:
 
 ```sh
-t3-dev --profile arkhiv start
-t3-dev --profile arkhiv sync
-t3-dev --profile arkhiv verify
-t3-dev --profile arkhiv test --command 'make test-integration'
-t3-dev --profile arkhiv stop
-make test-browser
+cp .env.example .env    # then choose a local database password
+docker compose up --build
 ```
 
-The T3 preview seeds two clearly labeled synthetic collections. Its application
-and test networks cannot reach Archive.org. The integration snapshot uses
-PostgreSQL 15 to match the shared tools image's backup client; the isolated browser
-suite and homelab pilot use PostgreSQL 17 with a matching client. Browser tests
-run in a separate disposable Compose project and clean up their own containers.
-`make test-recovery` runs the recovery assertions in the integration suite.
+The web app is served on the loopback port set by `WEB_PORT` (5173 in `.env.example`), and the API on `API_PORT`.
 
-`make verify` checks formatting, TypeScript, lint, Go/web tests, both Go binaries,
-web build, Compose configuration, and the retained Open Pilot template. Database
-integration runs when `TEST_DATABASE_URL` points to the disposable launcher DB;
-the explicit integration target refuses to run without it. Hosted CI and rendered
-pilot/restore evidence remain separate checks.
+Or run the API and frontend directly against a PostgreSQL 17 database:
 
-For a manual container build, `docker compose up --build` serves loopback port
-5173. The API applies checksum-locked migrations and requires a managed archive
-root when a database is configured. The sample database password is for disposable
-local development. `/api/health` checks process health; `/api/ready` checks database
-connectivity. Catalog and asset routes are read-only; mutations use the CLI.
+```sh
+make dev-api    # Go API from backend/cmd/app
+make dev-web    # Vite on port 5173
+```
 
-The [operator runbook](docs/runbooks/pilot-operations.md) covers planning, acquisition,
-review, extraction, integrity checks, backup, and restore. Acquired documents,
-credentials, generated data, and binaries stay outside Git. Original source
-metadata remains independent of editorial overrides.
+Vite proxies `/api` to `http://127.0.0.1:8080`. Set `ARKHIV_DEV_API` to use another API address.
 
-## Project documents
+Checks:
 
-- [Anarchist Zine Archive milestone](docs/plans/0001-anarchist-zine-archive.md)
-- [Managed operations, public release, and second archive](docs/plans/0002-managed-archive-and-public-release.md)
-- [Pilot operations and recovery](docs/runbooks/pilot-operations.md)
-- [Stack and development boundaries](docs/reference/stack.md)
-- [Documentation index](docs/README.md)
-- [Open Pilot](docs/open-pilot.md)
+```sh
+make verify               # Go format, vet and tests; web typecheck, lint, tests and build; Compose config; dependency pins
+make test-browser         # desktop and narrow-screen browser tests in a disposable Docker stack
+make test-operations      # Python tests for the scheduled job scripts
+make test-integration     # catalog, search, asset and recovery tests; needs a disposable TEST_DATABASE_URL
+```
 
-Source code is GPL-3.0-only; that license does not apply to acquired documents.
+## Configuration
 
-The public site uses `https://anarchist-archive.subcult.tv`, with correction and removal requests directed to `info@subcult.tv`. The full selected Anarchist source is public approved under its verified automatic policy; A-Info remains private. The [roadmap](docs/plans/0002-managed-archive-and-public-release.md) records access review, activation and qualification separately.
-Managed job runners are documented in [the operations runbook](docs/runbooks/managed-operations.md).
+| Variable | Used by | Purpose |
+| --- | --- | --- |
+| `DATABASE_URL` | API, CLI | PostgreSQL connection string |
+| `API_ADDR` | API | Listen address |
+| `ARKHIV_ARCHIVE` | API, CLI | Root folder of preserved files |
+| `MIGRATIONS_DIR` | API | Folder of SQL migrations, applied at startup |
+| `ARKHIV_PUBLIC` | API | Set to `1` to serve only publicly approved files, without running migrations |
+| `ARKHIV_REVISION` | API | Revision string reported by the server |
+| `VITE_PUBLIC_URL` | Web build | Canonical public address; the current origin is used when unset |
+| `VITE_CORRECTION_CONTACT` | Web build | Address for correction and removal requests |
 
-## Reviewed public access
+Local Compose also reads `PROJECT_NAME`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_PORT`, `API_PORT` and `WEB_PORT` from `.env` (see [`.env.example`](.env.example)), and `ARKHIV_ARCHIVE_PATH` for the archive folder.
 
-Private publication and public approval are separate decisions. `ARKHIV_PUBLIC=1`
-starts the API with the variant allowlist enforced on collections, catalog, search,
-facets, covers, reading and downloads. It does not run migrations; deploy migrations
-with the operator first and use a separate read-only database role and read-only
-archive mount. The private pilot API remains available for internal qualification.
+Each collection (source items, selected files, size and batch limits, update and access policy) is defined in a file under `collections/`: [`anarchist-zines.yaml`](collections/anarchist-zines.yaml) and [`a-info-zines.yaml`](collections/a-info-zines.yaml). The first reviewed public manifest is [`anarchist-zines-public-review.json`](collections/anarchist-zines-public-review.json).
 
-The owner approved public archival access to the exact 25-document, 26-variant
-manifest in `collections/anarchist-zines-public-review.json`. Rights remain unknown;
-Anarchist Archive asserts no reuse license. The public URL is `https://anarchist-archive.subcult.tv` and
-correction/removal contact is `info@subcult.tv`. Build-time `VITE_PUBLIC_URL` and
-`VITE_CORRECTION_CONTACT` customize those values for another installation.
+## Operator commands
 
-Apply a reviewed manifest with the operator command `approve-public --manifest PATH
---review "owner decision and evidence"`. It verifies source/document identity,
-original filename, SHA-256, size, private publication and readable extraction before
-committing the entire approval. `revoke-public --variant ID --review "reason"`
-withdraws catalog, search, cover, reader and download access and preserves originals
-and decision history. New variants start unapproved, including additions to a
-privately published document. The source updater grants public access only when an explicit `verified-automatic` collection policy is configured and integrity/reader checks pass. Other collections retain individual approval; explicit revocations and withdrawals stay in force.
+Build the CLI with `make build`, then run `bin/arkhiv <command> --config ../collections/COLLECTION.yaml` from `backend/`. Without `--config`, commands use `collections/anarchist-zines.yaml`. Commands include:
 
-`web/nginx.public.conf` routes only to the dedicated public API and disables proxy
-caching. Catalog and document responses use `Cache-Control: no-store`; approval is
-checked before conditional or range handling. Copies already downloaded by a reader
-cannot be recalled by revocation.
+| Command | Purpose |
+| --- | --- |
+| `migrate` | Apply database migrations |
+| `plan`, `acquire` | Preview and run a bounded acquisition |
+| `refresh`, `changes`, `review-change`, `acquire-changes` | Check the source for changes, list them, decide on each, and fetch approved changes |
+| `list`, `inspect`, `edit`, `group` | Inspect documents, apply editorial overrides, group editions |
+| `extract` | Extract text and covers |
+| `publish`, `unpublish` | Publish documents in the private catalog |
+| `approve-public`, `revoke-public` | Grant or withdraw public access from a reviewed manifest |
+| `approve-automatic` | Apply a collection's verified-automatic access policy |
+| `audit`, `backup`, `restore` | Check stored files, back up and restore |
 
-Source update jobs persist payload `Retry-After` deadlines and stop further source requests until that deadline. Expired payload backoff resumes pending acquisition before the next collection cadence. For a bounded operator qualification, `refresh --scheduled --force-source-check` bypasses cadence while retaining disabled-collection and source-backoff checks; ordinary scheduled runs keep each collection's configured cadence.
+[`docs/runbooks/source-updates.md`](docs/runbooks/source-updates.md) explains the source refresh and change review process.
 
-The public entry page includes Open Graph and Twitter summary metadata. Document canonical links and titles update in the browser; document-specific social previews are not server rendered. Public readiness monitoring checks the qualified revision and mode.
+## Deploy
 
-## Catalog design
+The repository builds two images:
 
-The owner selected **A — Front Cover** from the [inspiration studies](docs/design/catalog-previews.md). The interface now displays real catalog metadata and local cover scans in the selected layout, with existing search, reading, downloads and rights information. The comparison prototypes are removed. The selected Front Cover frontend is deployed to the existing public service. The complete source qualification and rollback are recorded in the expansion report.
+- [`backend/Dockerfile`](backend/Dockerfile): the API and the `arkhiv` CLI, with migrations, collection files, `poppler-utils` and the PostgreSQL client. The API listens on port 8080 and stores files under `/data/archive`.
+- [`web/Dockerfile`](web/Dockerfile): the static frontend on nginx. [`web/nginx.public.conf`](web/nginx.public.conf) is the configuration for a public site.
 
-## Full Anarchist collection and automatic access
+For a public deployment, run migrations and acquisition with an operator database role, then start the API with `ARKHIV_PUBLIC=1`, a read-only database role and a read-only archive mount. Approve files with `approve-public` before they appear. Serve the frontend over HTTPS.
 
-The owner authorized automatic archival reading and downloads for the Anarchist collection on October 3, 2026. Its configuration now selects all 700 unrestricted PDFs from the measured `ZineArchive` source, preserving the existing pilot identities; two existing variants share one document, for 699 selected document keys. Filename-derived titles for additions are provisional catalog labels, not researched bibliographic titles. Grouping similar filenames requires a separate editorial decision.
+## Project layout
 
-The full source PDFs total 3,510,725,119 bytes before OCR companions. Explicit collection limits are 1,000 documents, 8 GiB per acquisition batch, 250 MiB per file, two transfers at most, and a 2 GiB free-space reserve. Framework validation supports these broader bounds; other configured archives retain their own limits.
+```text
+backend/       Go API (cmd/app) and operator CLI (cmd/arkhiv)
+web/           React and Vite frontend with the PDF reader
+migrations/    SQL migrations
+collections/   Collection configurations and public access manifest
+scripts/       Browser test stack and scheduled job scripts
+deploy/        Shared-engine Compose file and version pins
+docs/          Brand assets, design studies, plans and runbooks
+```
 
-`approve-automatic --config PATH` applies the recorded policy to the exact collection/source item after original hashes and successful reader manifests are verified. It writes exact variant/hash decision manifests and events, asserts no reuse license, and respects revocations, document withdrawals and source holds/rejections. Repeat runs add no duplicate approval events. Scheduled source acquisition applies the same policy after extraction. A collection without this explicit policy continues to require individual public approval.
+## Contributing
 
-All 700 selected PDFs and 468 usable OCR companions are acquired and verified, totaling 3,541,315,927 bytes. All PDFs passed extraction; the catalog contains 12,732 pages. All 700 download hashes and first-page reader checks passed on the public site. The independent NUC snapshot passed file/dump verification and isolated catalog replay. The [full-source qualification report](docs/reports/full-anarchist-qualification-20261003.md) records those proof boundaries, rollback and operating limits. See [issue #52](https://git.subcult.tv/subculture-collective/arkhiv-alpha/issues/52) and the [expansion plan](docs/plans/0004-full-anarchist-collection.md).
+- Bugs and feature requests: [GitHub issues](https://github.com/subculture-collective/arkhiv-anarchist/issues).
+- Code: pull requests on GitHub against `main`. CI runs `make verify`, the browser tests and a production image build on every pull request. All must pass.
 
-The original frontend remains in this repository. A versioned headless Arkhiv
-engine can serve it through the [shared-core release runbook](docs/runbooks/shared-core-release.md),
-with an immutable pin and independently verified upgrades.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
-## Viewer feedback, October 6
+## License
 
-The product independently pins shared viewer 0.4.0. Its native backend and core
-pins remain independent. Browser favorites are scoped to this product or selected
-collection and retain removable unavailable references. Sharing has a selectable
-copy fallback and social compose links. Optional account activation requires a
-verified native-to-canonical identity mapping and a separate provider decision.
-No acquisition, approval or deployment changes are included.
-
-The [viewer qualification report](docs/reports/viewer-feedback-2026-10-06.md) records local verification and browser evidence.
-
-The [curator workflow plan](docs/plans/0004-curation-and-preservation-workflows.md) records review authority, preservation operations and measured OCR limits.
-
-## Bounded backup follow-up
-
-The opt-in [bounded backup mode](docs/runbooks/bounded-backups.md) retains complete snapshots and shares verified read-only files between backups. Explicit snapshot/staging/independent-store caps refuse unsafe growth without pruning evidence. Source qualification and live capacity/restore requirements are tracked in Anarchist Archive #56; live jobs retain their existing behavior until reviewed activation.
-
-The [automatic frontend deployment](docs/automatic-frontend-deployment.md) path
-retains the selected collection identity and delivers verified main builds to
-the existing public Almaz reader. Core/data releases keep their own procedures.
+The software is licensed under GPL-3.0-only. See [LICENSE](LICENSE). The license does not apply to the archived documents, whose rights remain with their creators.
