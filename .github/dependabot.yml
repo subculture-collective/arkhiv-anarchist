@@ -1,0 +1,68 @@
+# Kept quiet on purpose: green pull requests in this organization merge
+# themselves and deploy. One grouped minor/patch pull request per ecosystem
+# each month, direct dependencies only, no major versions.
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: /backend
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      go-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      npm-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      # Pinned with a reviewed receipt (deploy/viewer-release.json).
+      - dependency-name: "@subcult/archive-viewer"
+      # Exact pin that the viewer and scripts/copy-pdf-assets.mjs depend on.
+      - dependency-name: "pdfjs-dist"
+      # Must match the Playwright image in web/Dockerfile.browser and
+      # web/Dockerfile.readerprobe.
+      - dependency-name: "@playwright/test"
+
+  - package-ecosystem: docker
+    directories:
+      - /backend
+      - /web
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      docker-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      # A Go minor release is a toolchain change; bump it with backend/go.mod.
+      - dependency-name: "golang"
+        update-types: ["version-update:semver-minor"]
+      # Follows the fleet's nginx pin (docs/automatic-frontend-deployment.md).
+      - dependency-name: "nginx"
+      # Must match @playwright/test in web/package.json.
+      - dependency-name: "playwright"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      actions-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
