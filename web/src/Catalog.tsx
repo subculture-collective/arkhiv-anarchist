@@ -6,6 +6,7 @@ import {
   type Listing,
 } from "./App";
 import { FavoriteButton, type BrowserFavorites } from "./Preferences";
+import { displayTitle } from "./title";
 
 function Cover({
   document: doc,
@@ -20,7 +21,7 @@ function Cover({
     <a
       className="publication-cover"
       href={`/documents/${doc.id}`}
-      aria-label={`Open ${doc.metadata.title}`}
+      aria-label={`Open ${displayTitle(doc.metadata.title)}`}
     >
       {variant && !failed ? (
         <img
@@ -32,7 +33,7 @@ function Cover({
       ) : (
         <div className="cover-fallback">
           <span>Cover unavailable</span>
-          <strong>{doc.metadata.title}</strong>
+          <strong>{displayTitle(doc.metadata.title)}</strong>
           <span>Open document →</span>
         </div>
       )}
@@ -112,7 +113,7 @@ export default function Catalog({
             <p className="eyebrow">From the collection</p>
             <h2>
               <a href={`/documents/${featured.id}`}>
-                {featured.metadata.title}
+                {displayTitle(featured.metadata.title)}
               </a>
             </h2>
             <p>{featured.metadata.creator || "Creator unknown"}</p>
@@ -135,7 +136,7 @@ export default function Catalog({
               <p className="eyebrow">Also inside</p>
               {listing?.documents.slice(1, 4).map((doc) => (
                 <a key={doc.id} href={`/documents/${doc.id}`}>
-                  <strong>{doc.metadata.title}</strong>
+                  <strong>{displayTitle(doc.metadata.title)}</strong>
                   <small>{doc.metadata.creator || "Creator unknown"}</small>
                 </a>
               ))}
@@ -250,7 +251,7 @@ export default function Catalog({
               {listing?.documents.map((doc) => (
                 <tr key={doc.id}>
                   <th scope="row">
-                    <a href={`/documents/${doc.id}`}>{doc.metadata.title}</a>
+                    <a href={`/documents/${doc.id}`}>{displayTitle(doc.metadata.title)}</a>
                   </th>
                   <td>{originalDate(doc)}</td>
                   <td>{doc.metadata.creator || "Unknown"}</td>
@@ -264,7 +265,7 @@ export default function Catalog({
                   <td>
                     <FavoriteButton
                       id={doc.id}
-                      title={doc.metadata.title}
+                      title={displayTitle(doc.metadata.title)}
                       favorites={favorites}
                     />
                   </td>
@@ -283,7 +284,7 @@ export default function Catalog({
                   {doc.metadata.subjects?.join(" / ")}
                 </p>
                 <h2>
-                  <a href={`/documents/${doc.id}`}>{doc.metadata.title}</a>
+                  <a href={`/documents/${doc.id}`}>{displayTitle(doc.metadata.title)}</a>
                 </h2>
                 <p>
                   {doc.metadata.creator || "Creator unknown"} ·{" "}
@@ -291,7 +292,7 @@ export default function Catalog({
                 </p>
                 <FavoriteButton
                   id={doc.id}
-                  title={doc.metadata.title}
+                  title={displayTitle(doc.metadata.title)}
                   favorites={favorites}
                 />
                 <p className="rights-label">
