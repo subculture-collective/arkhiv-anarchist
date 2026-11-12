@@ -1,3 +1,4 @@
+import { displayTitle } from "./title";
 import { lazy, Suspense, useEffect, useState } from "react";
 import Catalog from "./Catalog";
 import {
@@ -245,7 +246,7 @@ export default function App() {
                 ← Back to collection
               </a>
               <p className="eyebrow">{collection?.name}</p>
-              <h1>{doc.metadata.title}</h1>
+              <h1>{displayTitle(doc.metadata.title)}</h1>
               <FavoriteButton
                 id={doc.id}
                 title={doc.metadata.title}
