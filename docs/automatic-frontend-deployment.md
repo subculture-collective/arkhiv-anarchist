@@ -1,5 +1,13 @@
 # Automatic public-reader deployment
 
+Since November 10, 2026, GitHub Actions does this work. `Mirror CI`
+(`.github/workflows/mirror-ci.yml`) verifies every push to a branch other than main, and `Deploy`
+(`.github/workflows/deploy.yml`) publishes the images to GitHub Packages and
+deploys main to Almaz over the tailnet. The deploy key and known hosts are
+GitHub secrets with the same names. The Gitea workflow now only verifies main.
+The paragraphs below describe the original Gitea pipeline; the receiver, the
+deployed service and the verification steps are unchanged.
+
 Native Gitea CI retains `make verify` and the isolated browser/PostgreSQL 17
 smoke. PRs also build and validate the public-reader image without deployment
 credentials. Main pushes and manual main dispatches publish the existing role
