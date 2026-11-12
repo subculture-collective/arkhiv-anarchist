@@ -1,54 +1,54 @@
 {
   "studio_repository": "subculture-collective/subcult-tv",
-  "studio_revision": "6907e56c181949c1d99064dbc38ae9fe660a66d0",
+  "studio_revision": "99c0d074c56d12ffdb89e989b40a4eec3a3fa1a8",
   "brand": "anarchist-archive",
   "files": [
     {
       "source": "studio/brands/anarchist-archive/GUIDE.md",
       "target": "docs/brand/anarchist-archive/GUIDE.md",
-      "sha256": "73a0356775c93b27f3fbc4297e922ee066c76ba19e3dc2893b335c875ebda3fa",
+      "sha256": "1e78320e872e68205667c3bae7a5b17243a040768edbb16bf5dbc0638128679c",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/product/readme-lockup.png",
       "target": "docs/brand/anarchist-archive/readme-lockup.png",
-      "sha256": "58b7f62cae971914ed778cd6fb08cf7f569879ad86193b5d45f84fb28d135ee9",
+      "sha256": "2b90c92e251eaf69c27395ad6410fae334276a6e66afb55514d7ff7ddb906c86",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/social/avatar.png",
       "target": "docs/brand/anarchist-archive/avatar.png",
-      "sha256": "82329add460f503a5660fabb69b8de18becfd013e87f62a977b6b98421cf54ef",
+      "sha256": "a22af8e6bc05868dbabbd61ee80654f122493b7839000dee4ccc8df131cabc2e",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/product/favicon.svg",
       "target": "web/public/brand/anarchist-archive/favicon.svg",
-      "sha256": "d7f37863c201442961f2308c81c475bed0addf15a31f38f1e920ff8674d17294",
+      "sha256": "01ca920609fec75c45d0d72ad8a745b0ac62a90f8a6a91fe519e7cb02cc80a99",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/product/favicon.ico",
       "target": "web/public/brand/anarchist-archive/favicon.ico",
-      "sha256": "a6ac0531aaa7a13d243dff3cc47c86d8afd883612b53c5c905323355a4bdaf93",
+      "sha256": "35788bc974f1e5f1136e3ea1b91d67ae93a632d3e6e77f3cbfeb201a11f62478",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/product/apple-touch-icon.png",
       "target": "web/public/brand/anarchist-archive/apple-touch-icon.png",
-      "sha256": "41ca7b0b3887e55c625d70439f0645c7030fce6d7eb26a7a04cb2e94082e965d",
+      "sha256": "aa65d0e967439f4353d9cc970a6e90fca4fef117cf8a09d8e0b11d8335146606",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/product/og.png",
       "target": "web/public/brand/anarchist-archive/og.png",
-      "sha256": "bad99369da27a99622ea733e2591e6484cf95a616617cabe56844ea9ea944a9d",
+      "sha256": "9234905dd381ee69d14108dc312e8cf737a2191d729604046a2335c666fc357a",
       "transformation": "unchanged copy"
     },
     {
       "source": "studio/brands/anarchist-archive/product/mark.svg",
       "target": "web/public/brand/anarchist-archive/mark.svg",
-      "sha256": "19af71f3df4946a55ba7f8fe184c767064cdbdf4a7e53cff07939558c1521930",
+      "sha256": "c9e6422f0dfac242671dbfcd94c9118f0334757d7edc0dea8b59f3e1bcc232af",
       "transformation": "unchanged copy"
     }
   ]
