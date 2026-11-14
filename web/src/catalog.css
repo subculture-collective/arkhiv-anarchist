@@ -1156,3 +1156,44 @@ main:has(.document) .masthead {
   margin: -10px 0 0;
   font-size: 13px;
 }
+
+/* Series: the masthead link, the series page and a document's series. */
+.masthead nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+.catalog-heading h1 {
+  font:
+    700 34px/1.1 Arial,
+    sans-serif;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.series-index .catalog-heading {
+  margin-bottom: 36px;
+}
+.series-index .catalog-heading p {
+  max-width: 460px;
+}
+.series-count {
+  font: 700 11px/1.5 monospace;
+}
+.series-issues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font: 12px/1.5 monospace;
+}
+.series-issues [aria-current="page"] {
+  font-weight: 700;
+}
+.document-details .series p {
+  margin: 0;
+}
+.series-links {
+  font: 11px/1.5 monospace;
+}

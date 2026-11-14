@@ -1,0 +1,548 @@
+{
+  "anarchist-zines": [
+    {
+      "slug": "anathema",
+      "name": "Anathema",
+      "issues": [
+        {
+          "id": "aad5a586ffea05ea7d245e096a6494ec279d6403f573245f703121854c227915",
+          "issue": "April 2021"
+        },
+        {
+          "id": "0add55a6ab866da12b5bbd254362e58ba3f87247c25cafdca9e94817f18bc9b5",
+          "issue": "April 2021 (print)"
+        },
+        {
+          "id": "bafd9d1ece4ba9c9c5c0d98740f2ac22b8c5fb54a1cc5bc7d8f5b5d16a120864",
+          "issue": "April 2021 (print, text)"
+        },
+        {
+          "id": "c82e74c76a979d6c5d5c51bda0f797d92840b55b4f4fdbf983582708d08018ba",
+          "issue": "June 2021"
+        },
+        {
+          "id": "9cc3e3e9189e7c43331745956136747e9d080285576308e9675c74662b4e501f",
+          "issue": "June 2021 (print)"
+        },
+        {
+          "id": "a230bb7ad3346e0063f4305c6d4c957b2394e1b85ee90649a480e4870e1e19ed",
+          "issue": "June 2021 (print, text)"
+        },
+        {
+          "id": "2994eeb4c862069ceb6546acf3c3c9bc498f83cc91975bdb0f3bb035eaeb6fba",
+          "issue": "August 2021"
+        },
+        {
+          "id": "e7ab719529c334db42714fff6524be29328af5e89459d101801f17112df4a972",
+          "issue": "August 2021 (print)"
+        },
+        {
+          "id": "3c149fbcf7dd4e3ef70f3270cedb9aab816e4389f886665fb696587fc771d03b",
+          "issue": "August 2021 (print, text)"
+        },
+        {
+          "id": "55774fb656dc6fc1648d6b267c200f8de52c6b3d08df737a801877d062dc715f",
+          "issue": "Volume 7, Issue 6"
+        },
+        {
+          "id": "4bd409b31b38fdb8348e2c93321a84eca58a828eb40dbe8760c6c71c6e1b7fc8",
+          "issue": "Volume 7, Issue 6 (print)"
+        },
+        {
+          "id": "f2ee4e5f6fd89e934dbd084680c21473f9a508892ef5ff6c0bbf959c0476b455",
+          "issue": "September 2022"
+        },
+        {
+          "id": "6114d25cc150fff7391acf85837c7b047e7abded2384b85ae20eac1756934c5d",
+          "issue": "September 2022 (print)"
+        }
+      ]
+    },
+    {
+      "slug": "avalanche",
+      "name": "Avalanche",
+      "issues": [
+        {
+          "id": "c33afef8d85b03f618d170dcfed02e7c1c928b01dec3385d15771a9468d9bee7",
+          "issue": "7"
+        },
+        {
+          "id": "e0d2ab403678adb458e4244b4fdc7c27abb3c9f53169b52bb67b1611fc136bbc",
+          "issue": "8"
+        },
+        {
+          "id": "379398c58e66273f6d4bf873ec39fa299a0d1bba359f7e64ddfc4e91aa4be384",
+          "issue": "9"
+        },
+        {
+          "id": "0804f14b9fd1cb3e19d6042d56d1f9e9835a56c17c2d76aaffcc8c5e8904bca5",
+          "issue": "12"
+        },
+        {
+          "id": "7d999a5e2ee27a340025ac32ea70c390dabc45d9228e0dfbf97e684bd12eee7a",
+          "issue": "13"
+        }
+      ]
+    },
+    {
+      "slug": "barricade-bulletin",
+      "name": "Barricade Bulletin",
+      "issues": [
+        {
+          "id": "3710c6371e78dc91400238c0120dbf07b4d04616a0bf31fc968a70e25cd81b7a",
+          "issue": "14"
+        },
+        {
+          "id": "21a9aed40e4a38629490df4391beec4d13330b4bb6d90a435506aefe0d2656ee",
+          "issue": "14 (text)"
+        }
+      ]
+    },
+    {
+      "slug": "creeker",
+      "name": "Creeker",
+      "issues": [
+        {
+          "id": "561ec01530877f547db2099acddcdd891f6f45798c89ee8d11b419f193f6f86d",
+          "issue": "Volume 1"
+        },
+        {
+          "id": "2116144d6e05083dffdb5f93792d2f7216610f816ea5245329e964235e3781bd",
+          "issue": "Volume 1 (print)"
+        },
+        {
+          "id": "11ab9238e3f9f882fd9f90fa5920c63b2b0b56a6befdbb6ab25036bbe09317e6",
+          "issue": "2.3"
+        },
+        {
+          "id": "217e00a876882e8a6152da0f70bbf4e8a7e80991986eaaeb697ee27608a653ff",
+          "issue": "2.3 (print)"
+        },
+        {
+          "id": "87c00f623475d61f6b8554e5726668fc8c4daeda7b93f4c937b7617932753ffa",
+          "issue": "3.04"
+        },
+        {
+          "id": "8d66e30780453c6882383465dfaa20e74f8a1602bf84753322e2d5af188b88d6",
+          "issue": "3.04 (print)"
+        }
+      ]
+    },
+    {
+      "slug": "creeker-companion",
+      "name": "Creeker Companion",
+      "issues": [
+        {
+          "id": "d974684cece87441a6f44e6e0fd5f83cd64ba831ee0409f8f29407092f4f8420",
+          "issue": "1.0"
+        },
+        {
+          "id": "9f88ec312e6dea3aa4d1e2df8ea0f42498b306cecb00988237ee42dacd5ff4e8",
+          "issue": "1.0 (print)"
+        },
+        {
+          "id": "92fa359bb72e1d599e82deedaa8a1d5ae8651b9af4cda8e4cb8a84eba586c22f",
+          "issue": "2.03 (print)"
+        }
+      ]
+    },
+    {
+      "slug": "dark-nights",
+      "name": "Dark Nights",
+      "issues": [
+        {
+          "id": "255f2fabae70c1fd36237b0a24c20db6a7bb8ed801ae6343ad6853c807e271d9",
+          "issue": "47"
+        },
+        {
+          "id": "15348772bbbcf4dca1a0605e31e40f650bf07b074ae2ee1cc3bdaf5d7d7206de",
+          "issue": "48"
+        },
+        {
+          "id": "a147008464fd614d28d3c63e555af386848590a52ee60e1ff552b5317dea2ef1",
+          "issue": "50"
+        },
+        {
+          "id": "19707ec12c3ae502e88a1f168e9030ad21578c717a0bbe4c530a24f910e7c1f5",
+          "issue": "51"
+        },
+        {
+          "id": "35725e97db01048a49fdfa621ad13ebce152b6a2ae0f856102160b3c346048ca",
+          "issue": "52"
+        }
+      ]
+    },
+    {
+      "slug": "fire-ant",
+      "name": "Fire Ant",
+      "issues": [
+        {
+          "id": "a4cb534ea3d69c14dd9caf4f9bc6a29f589abc2f1f79e870accf7956e3ffc801",
+          "issue": "1"
+        },
+        {
+          "id": "e1361de9fa40e5780c936621e5d56215e8ead2efaebeac80a726d5135284820c",
+          "issue": "1 (print)"
+        },
+        {
+          "id": "24b0aa12ce062782bac9fb7721be448786a2f6276d65f3324543a3a4f61762a0",
+          "issue": "2"
+        },
+        {
+          "id": "d2c20919a26acec80ae567ee755409d5bd7024f61aae4f6189f26f0efd9877e7",
+          "issue": "9"
+        },
+        {
+          "id": "8d529e5781205cf83ca9d87b3fd247c380decfd78cdca77a1e6d73317a199e4c",
+          "issue": "10"
+        },
+        {
+          "id": "178976b12a20e36c2a1e5170dbe8870c7e26f9006de267abd8f4eee7d8ead763",
+          "issue": "11"
+        },
+        {
+          "id": "8981196c65f55360a0a677d688c735c2dd2091661b164c2002377f3496d40fed",
+          "issue": "12"
+        },
+        {
+          "id": "8860fd3f6951b999d88573212914fe61932a2cea1ea3cb8b2486e09cedc80065",
+          "issue": "13"
+        },
+        {
+          "id": "95315b1318ed51bcf58c3e703926ed5b9c31b127865c22f957f1cd97d759fdf2",
+          "issue": "14"
+        },
+        {
+          "id": "3e68362a24b8b95fb58fbabc67a0fde8e4a281fbd64ddf9720b759f667cb4bab",
+          "issue": "15"
+        }
+      ]
+    },
+    {
+      "slug": "iwoc",
+      "name": "IWOC newsletter",
+      "issues": [
+        {
+          "id": "dde3e67b1ee643bf135476a841ce1f35d60596ea3886ee9f58b73d5c318116ce",
+          "issue": "4 (print)"
+        },
+        {
+          "id": "c510fcccbb20445fdb04d6e0f684f38693c1117a622cce3797da7ea5f59c44af",
+          "issue": "5"
+        },
+        {
+          "id": "629d17587294f96cc065fd18dffcbe79074d788119ced300469d02d87f6356fb",
+          "issue": "6"
+        }
+      ]
+    },
+    {
+      "slug": "kate-sharpley-library-bulletin",
+      "name": "KSL: Bulletin of the Kate Sharpley Library",
+      "issues": [
+        {
+          "id": "41edb31834a4fc8886bb059675c59e7d0db639da319d646cfc1bf002923dad35",
+          "issue": "103"
+        },
+        {
+          "id": "0a030c55fc916e188e226968ec9fb4da655bdcf55de6ec7cb55e1f6e37a22e6b",
+          "issue": "106"
+        },
+        {
+          "id": "5216cdfdff3ad313fe84978a8c3840920769668cb162a6d39ecf588772510624",
+          "issue": "107–108"
+        }
+      ]
+    },
+    {
+      "slug": "pan",
+      "name": "Pan",
+      "issues": [
+        {
+          "id": "55696c0b7cfd08c196024c5a769ce309626aa2ea9ffc811797863b14cfa2e45d",
+          "issue": "10.1"
+        },
+        {
+          "id": "a4ad32e64fe622f75baa5eaddf8e1573c5cd631dde77bbe59248f73c2c4b2d00",
+          "issue": "10.1 (print)"
+        },
+        {
+          "id": "03a598749a4eb258d9196e249233f6ebda2f66bfef6aaa3fe541b5337d03a25a",
+          "issue": "11.1 (print)"
+        }
+      ]
+    },
+    {
+      "slug": "plain-words",
+      "name": "Plain Words",
+      "issues": [
+        {
+          "id": "8f60f50724cffefacefea8d841834586836c302fff0486c13249b8d0a924f2b7",
+          "issue": "1"
+        },
+        {
+          "id": "b2b1593693a703a3c604cec59ce34be2f0fe62b99db7325185cfd0bc8efc0662",
+          "issue": "3 (print)"
+        },
+        {
+          "id": "696ff3a45c3f18aceff540006f36dcd7ca6e5983bd3268c9984961c8fe5e08b5",
+          "issue": "4 (print)"
+        },
+        {
+          "id": "4336e898192c829d91bbb4e0df1489684ec7441ea429c586c58460119bfc583c",
+          "issue": "5"
+        },
+        {
+          "id": "ab8d9dd33999a2c31e91480aaa484f2262b801a3c75b2b369634653b375daa2b",
+          "issue": "5 (print)"
+        },
+        {
+          "id": "6671cff84a4da833e8424f102ac96d43ffdabd52279294bd14de91e3a8343800",
+          "issue": "6"
+        },
+        {
+          "id": "6f3c221e22c58b4b8523e67e35ef2602edc97d895140ac7d74862437d88f2d63",
+          "issue": "6 (print)"
+        }
+      ]
+    },
+    {
+      "slug": "prisoners-united",
+      "name": "Prisoners United",
+      "issues": [
+        {
+          "id": "efd3acefd7d0fc0bf405b6a2d293d91b664de44f997732b45e26eb84d81c7658",
+          "issue": "1"
+        },
+        {
+          "id": "849be3b2bafeaf4e112f04e2e82ae51abca9b1fa9375bae804f9d08a368abdc2",
+          "issue": "1 (text)"
+        }
+      ]
+    },
+    {
+      "slug": "rebel-city",
+      "name": "Rebel City",
+      "issues": [
+        {
+          "id": "9c4e87016e173f1c216126c97fb71446d8504d2993d7facd0fb4cba0f9e496d3",
+          "issue": "9"
+        }
+      ]
+    },
+    {
+      "slug": "rebellion-and-possibility",
+      "name": "Rebellion and Possibility",
+      "issues": [
+        {
+          "id": "a409fbbf36e773396e03793064165b1e38a2aae9dec12891201bfac9fc1d6174",
+          "issue": "Volume 1"
+        },
+        {
+          "id": "b3a7330e5c2e39d4af54cc0c0a1e6175d5773c1f8bf77826b5f1e8c78e61feff",
+          "issue": "Volume 1 (print)"
+        },
+        {
+          "id": "472c8de49729a05837da5f0112d154fa5a6bdb30914c740c64809e95e7cffac7",
+          "issue": "Volume 2"
+        },
+        {
+          "id": "4a9df5257565888d16d44f7424aaad66877727ddb2797f64f6acb736612e5c0a",
+          "issue": "Volume 2 (booklet)"
+        }
+      ]
+    },
+    {
+      "slug": "return-fire",
+      "name": "Return Fire",
+      "issues": [
+        {
+          "id": "ace1ca4cf26989ec8f592fdd2831fd6ef12d1f767aefbee21b6b2340de21cab7",
+          "issue": "Volume 3 covers"
+        },
+        {
+          "id": "726c2eb3b613df29b54b4ce393b0d5f6e9680ccca24f4212ba9c8e5eaea94579",
+          "issue": "Volume 5"
+        },
+        {
+          "id": "c9a1dcca910627397770459e78bc1539f1a6648db0e00d8cf7ff2b02593e4f42",
+          "issue": "Volume 5 covers"
+        },
+        {
+          "id": "38de79f76d1bbce3425b213801223fa4eb6b6b286e90a42719aafe873b677dfa",
+          "issue": "Volume 5 covers (colour)"
+        },
+        {
+          "id": "536ed15d82934c9d6e10f086323200d0b5a99f6929072ed8cf640fcdc7cddc01",
+          "issue": "Volume 6, chapter 2"
+        },
+        {
+          "id": "d3dbf0c0e904669c24be538f868466e3862701859f846d6a0f4884640c1f99a0",
+          "issue": "Volume 6, chapter 3"
+        },
+        {
+          "id": "2c02a9781262eef6da23c5c7089822cef604ec030eeb39b6c0e3a059f74bc48a",
+          "issue": "Volume 6, chapter 3 supplement"
+        },
+        {
+          "id": "ebf7c25594eb2bc56b14523e041303cf1649ad7c5c94bf2e1bacd0e66460e070",
+          "issue": "Volume 6, chapter 4"
+        },
+        {
+          "id": "d66abfa91624554a260c993fbaa0108d4844ceff8576cfc8d75e3420ff07cd39",
+          "issue": "Volume 6, chapter 5"
+        }
+      ]
+    },
+    {
+      "slug": "slap",
+      "name": "SLAP",
+      "issues": [
+        {
+          "id": "828e18dc38f369f0a6d541b37440bf099c92f59b80fc8e155c29366edecbb822",
+          "issue": "8"
+        },
+        {
+          "id": "b829d25e5727f61f94bc12e345fb9d00354e61f0d0f84d9298eb6aa59346ac78",
+          "issue": "9"
+        }
+      ]
+    },
+    {
+      "slug": "stormwarnings",
+      "name": "Stormwarnings",
+      "issues": [
+        {
+          "id": "4c74be2c48d18d1c253707e4f92d13bd1121d1245a44e9382217f370b0ec4738",
+          "issue": "42"
+        },
+        {
+          "id": "8f78e8677c1e340fab265a82eeeb13ba281fb66f1f3e5c0260c75ea1c2680dc7",
+          "issue": "42 (print)"
+        },
+        {
+          "id": "c1ba795684646fb15492247991ed940ed35203bf78aa379c086c20bfe060f6e0",
+          "issue": "43–44"
+        },
+        {
+          "id": "5fe87710b1bc1d11b8f79e996dda8ec136a4da7283b0c35eb7f2ae69f02c6785",
+          "issue": "43–44 (print)"
+        },
+        {
+          "id": "5eb9721bfae430ed92284a531ce6081742ac698e596a6e942bdcfaf74f374c79",
+          "issue": "45"
+        },
+        {
+          "id": "11fcf4cc2d80969ee4e93c764719a1a7d5a43c83635cc7d5bd9cc7c724699695",
+          "issue": "45 (print)"
+        },
+        {
+          "id": "eeba410bece9ef365388e693da5ca33e968c4cfa1bf16fc3528ee73aa78c5e66",
+          "issue": "49"
+        },
+        {
+          "id": "1dcdaf136703ac889f505b30a7263ea796296d6a1303848224fac7428d77bc4a",
+          "issue": "49 (print, A4)"
+        },
+        {
+          "id": "6ba9a4afd7a37002cf60a47c5acad6e485823151a3f83aed59c272510e92f2f1",
+          "issue": "49 (print, letter)"
+        },
+        {
+          "id": "f8c95895e933e60f53c3357a5fe930b7fcd371d01fd9dbbfcbd1191fd900c73d",
+          "issue": "55"
+        },
+        {
+          "id": "032f7cfb181d3c14f1dc992f68d52100dad64c9bb368e1719bf024cf4edab65d",
+          "issue": "55 (print, A4)"
+        },
+        {
+          "id": "cebd1baa591e246cfd043f54fb50eb36808dff1863ca7a7f4f9104409f096919",
+          "issue": "55 (print, letter)"
+        },
+        {
+          "id": "fdcbd711f619fa3af0476191abb61a7d65e6b60b812b67f88961229798c0a83c",
+          "issue": "57–58"
+        },
+        {
+          "id": "cc134532f5059669e478924d57d74096e1e59d866df94c045ba91d517332baf0",
+          "issue": "57–58 (print, letter)"
+        },
+        {
+          "id": "f5b0c373d83e3ddd2bfceb6b588a0fdb7af15dd1eb6ed2c15aa62609aa64d197",
+          "issue": "59–60"
+        },
+        {
+          "id": "71b3eb0b202c9a0e825c6151fe0c8bfd690aedbac93d32c54f979a7a80a3a6db",
+          "issue": "59–60 (print, A4)"
+        },
+        {
+          "id": "9af2e25db6df9a401d454b2671572eeab82c7bd8a7469c333a761e4d44ef33aa",
+          "issue": "59–60 (print, letter)"
+        }
+      ]
+    },
+    {
+      "slug": "voices-from-behind-wisconsin-prison-gates",
+      "name": "Voices from Behind Wisconsin Prison Gates",
+      "issues": [
+        {
+          "id": "b21f667423d15d82b1159e3f3ccc92167c30f553eae01524fc48c77b7d98f86b",
+          "issue": "1"
+        },
+        {
+          "id": "36b7874ac60581d7b479e3f86e376b9e8e0065ba625fe0fdcd571b64539c6d46",
+          "issue": "1 (text)"
+        },
+        {
+          "id": "99993f9bb92e7a09978f36598fddf2fdb936e7349e1391c9b9f534f126df255a",
+          "issue": "3D"
+        }
+      ]
+    },
+    {
+      "slug": "wildfire",
+      "name": "Wildfire",
+      "issues": [
+        {
+          "id": "d40a09f1563bb500895ecc0146be14eb5924a69fe0fded3dce3748d435a9c619",
+          "issue": "5"
+        }
+      ]
+    },
+    {
+      "slug": "youth-liberation-now",
+      "name": "Youth Liberation Now",
+      "issues": [
+        {
+          "id": "7d09d1ecd9b830d46a9c304fb9d62f039e33b7d51aae919ce6e10843f56d836d",
+          "issue": "2"
+        },
+        {
+          "id": "418b6ca9c55f44bf74c1022b62b20a3cbc3811331c657c29a9caea3189a83f1f",
+          "issue": "2 (print)"
+        },
+        {
+          "id": "df092bd2d8920175a5b640b69325db55ad3ba8e09a5f6fba255942ccf6226f05",
+          "issue": "2 (text)"
+        },
+        {
+          "id": "d614250ad6ed746ebc7ca3b3ecae37e12665e47bc6bb82df480aec7e7dc814b6",
+          "issue": "2 (print, text)"
+        }
+      ]
+    }
+  ],
+  "fixture-zines": [
+    {
+      "slug": "fixture-series",
+      "name": "Fixture series",
+      "issues": [
+        {
+          "id": "483f7ab8c5930ce1ea9e1809b7d1d0d21c2692924e8fdd896adb85e2fbec824c",
+          "issue": "1"
+        }
+      ]
+    }
+  ]
+}
