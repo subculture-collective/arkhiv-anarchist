@@ -15,7 +15,7 @@
     "prebuild": "node scripts/copy-pdf-assets.mjs"
   },
   "dependencies": {
-    "@subcult/archive-viewer": "0.4.7",
+    "@subcult/archive-viewer": "0.4.8",
     "pdfjs-dist": "5.4.624",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
