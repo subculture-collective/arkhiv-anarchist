@@ -8,6 +8,13 @@ GitHub secrets with the same names. The Gitea workflow now only verifies main.
 The paragraphs below describe the original Gitea pipeline; the receiver, the
 deployed service and the verification steps are unchanged.
 
+Since November 14, 2026 the site's `/api` is the shared Arkhiv core, not the API
+in `backend/`. When the core pin changes, `Deploy` first deploys the core through
+its own receiver profile (see
+[`runbooks/shared-core-release.md`](runbooks/shared-core-release.md)), then the
+frontend as below. It no longer builds or publishes the `backend/` API image; the
+legacy API container is stopped and kept only for rollback.
+
 Native Gitea CI retains `make verify` and the isolated browser/PostgreSQL 17
 smoke. PRs also build and validate the public-reader image without deployment
 credentials. Main pushes and manual main dispatches publish the existing role
@@ -23,7 +30,7 @@ fleet's maintained nginx 1.31.7 pin rather than reverting to the older 1.29 sour
 The reusable shared Arkhiv default identity is independent of this consumer.
 
 The host's frontend-only baseline retains its two existing networks and read-only
-production nginx bind. The existing public API upstream, core/data containers,
+production nginx bind. The public API upstream (the shared core), core/data containers,
 archive files, collection membership, provenance and rights records keep their
 current release and preservation procedures. This workflow performs no database
 migration, ingestion or publication-pointer change.
