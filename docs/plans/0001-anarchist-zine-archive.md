@@ -219,6 +219,12 @@ or a swipe, and has a full-screen mode (F toggles it, Escape leaves). Full scree
 replaces reading focus. Search and page text share one "Search & text" panel,
 and the record details sit beside the reader on desktop and below it on phones.
 
+Series browsing followed: the catalog has no series field, so series are
+curated by document ID in `web/src/series.json`. The catalog filters by
+series, `/series` lists each series with its issues in order, a document page
+links the other public issues of its series, and the Creator field suggests
+names from the published catalog.
+
 ## Automatic frontend delivery
 
 The existing public reader gains [verified main CI deployment](../automatic-frontend-deployment.md)
