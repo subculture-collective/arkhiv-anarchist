@@ -213,6 +213,12 @@ partial and unknown dates remain visible when bounds are absent. Editorial date
 corrections do not replace the original source date. Existing covers, PDF text,
 search, downloads, rights and product-owned layout remain available.
 
+In November 2026 the document page put the reader first: it opens with the page,
+starts at "Whole page", turns pages with arrows beside the page, the arrow keys
+or a swipe, and has a full-screen mode (F toggles it, Escape leaves). Full screen
+replaces reading focus. Search and page text share one "Search & text" panel,
+and the record details sit beside the reader on desktop and below it on phones.
+
 ## Automatic frontend delivery
 
 The existing public reader gains [verified main CI deployment](../automatic-frontend-deployment.md)
