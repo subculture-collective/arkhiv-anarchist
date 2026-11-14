@@ -89,10 +89,13 @@ jobs:
         if: steps.artifact.outputs.available != 'true'
         run: |
           set -euo pipefail
+          # Runner DNS inside build containers fails now and then (EAI_AGAIN);
+          # retry the build twice before giving up.
+          retry() { for wait in 30 60 0; do "$@" && return 0; [ "$wait" = 0 ] && return 1; echo "Build failed; retrying in ${wait}s" >&2; sleep "$wait"; done; }
           test "$(git rev-parse HEAD)" = "$DEPLOY_REVISION"
           # The fleet-deploy receiver identifies the application by the Gitea source label.
           image="fleet-deploy/anarchist-archive/public-web:$DEPLOY_REVISION"
-          docker build -f web/Dockerfile --label "org.opencontainers.image.revision=$DEPLOY_REVISION" \
+          retry docker build -f web/Dockerfile --label "org.opencontainers.image.revision=$DEPLOY_REVISION" \
             --label "org.opencontainers.image.source=https://git.subcult.tv/subculture-collective/arkhiv-anarchist" -t "$image" web
           docker run --rm --network none --add-host api:127.0.0.1 --entrypoint nginx "$image" -t
       - name: Publish the images to GitHub Packages
@@ -101,10 +104,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          retry() { for wait in 30 60 0; do "$@" && return 0; [ "$wait" = 0 ] && return 1; echo "Build failed; retrying in ${wait}s" >&2; sleep "$wait"; done; }
           printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
           export DOCKER_BUILDKIT=1
           docker tag "fleet-deploy/anarchist-archive/public-web:$DEPLOY_REVISION" "$REGISTRY/arkhiv-anarchist-web:$DEPLOY_REVISION"
-          docker build -f backend/Dockerfile --label "org.opencontainers.image.revision=$DEPLOY_REVISION" -t "$REGISTRY/arkhiv-anarchist-api:$DEPLOY_REVISION" .
+          retry docker build -f backend/Dockerfile --label "org.opencontainers.image.revision=$DEPLOY_REVISION" -t "$REGISTRY/arkhiv-anarchist-api:$DEPLOY_REVISION" .
           for image in "$REGISTRY/arkhiv-anarchist-web:$DEPLOY_REVISION" "$REGISTRY/arkhiv-anarchist-api:$DEPLOY_REVISION"; do
             docker push "$image"
             printf 'published %s\n' "$(docker inspect --format '{{index .RepoDigests 0}}' "$image")"
