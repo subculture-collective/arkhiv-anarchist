@@ -17,7 +17,8 @@ services:
     networks:
       core:
         aliases: [anarchist-core-db]
-    mem_limit: 768m
+    # pg_dump expands retained legacy exports while readers remain connected.
+    mem_limit: 1536m
     cpus: 1
     healthcheck:
       test: [CMD-SHELL, pg_isready -U arkhiv -d arkhiv]

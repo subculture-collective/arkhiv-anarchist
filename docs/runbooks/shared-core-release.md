@@ -25,6 +25,12 @@ The `arkhiv_reader` role has `default_transaction_read_only=on`. `migrate`
 grants it SELECT on new tables because `operator` sets
 `ARKHIV_READER_ROLE=arkhiv_reader`.
 
+The database has a 1536 MiB memory limit. On November 15, a backup of
+`retained_legacy_exports` hit the former 768 MiB limit during public reads;
+the kernel killed the dumping PostgreSQL process and the server recovered.
+The deployment refused activation. Keep enough memory for a full dump while
+the reader is running; a successful idle dump alone does not establish that.
+
 The database was built from the newest off-host backup on NUC with
 `scripts/export_print_legacy.py --source backup`,
 `scripts/prepare_print_migration.py` and `scripts/apply_print_migration.py` from
