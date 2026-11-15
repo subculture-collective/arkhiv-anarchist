@@ -33,8 +33,10 @@ limits (`anarchist-zines` 8 GiB, `a-info-zines` 150 MiB). Document IDs, variant
 IDs and URLs are the legacy ones. The site no longer reads the legacy `arkhiv`
 database; keep it for the rollback below.
 
-The legacy `arkhiv-update.timer` is paused: it would acquire and publish into the
-legacy database, which the site no longer reads. The legacy backup, audit,
+The owner approved pausing acquisitions on 2026-11-15 UTC. The legacy
+`arkhiv-update.timer` is disabled: it would acquire and publish into the
+legacy database, which the site no longer reads. Migrate acquisition to the
+core before re-enabling it; reading and downloading remain available. The legacy backup, audit,
 retention, restore and monitor timers still run against the legacy stack.
 
 Set `c="docker compose --project-directory /mnt/spektr/server/data/anarchist-core -p anarchist-core"`
@@ -88,7 +90,7 @@ followed by `$c up -d core`.
 
 ## Roll back to the legacy API
 
-Tested on 2026-11-14 (switch to legacy, verify, switch forward again). The
+Tested on 2026-11-15 UTC (switch to legacy, verify the 699-document catalog and a document page, switch forward again). The
 switch script writes the nginx config in place, because it is a single-file bind
 mount, and reloads nginx without recreating the web container:
 
@@ -115,3 +117,18 @@ database first, and preserve newer writes before any restore.
 The original document and variant identities, metadata, source history and
 access decisions belong to the recovered archive. A core upgrade does not
 approve additional media or change collection policy.
+
+## Cutover comparison
+
+The full comparison covered 699 public documents, 700 variants and covers,
+2,100 byte-range requests, 1,366 variant searches and six full downloads.
+Document identities, matching page numbers and media bytes matched. The 1,161
+snippet differences are the core's query-centered excerpts instead of legacy
+leading text. The core also returns subjects without an explicit collection
+parameter and returns 404 for the out-of-scope private A-Info collection, where
+legacy returned empty lists. Neither exposes private documents.
+
+A local nightly core dump runs at 00:55 under
+`anarchist-core-backup.timer`, retaining seven dumps. Off-host copies of these
+new per-site databases are tracked by arkhiv#117; the legacy off-host backup
+is retained but does not include subsequent core-only changes.

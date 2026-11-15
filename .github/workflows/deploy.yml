@@ -87,8 +87,8 @@ jobs:
             echo "Pinned core $pinned; anarchist-archive.subcult.tv reports ${live:-no core_version}"
             if [ "$live" != "$pinned" ]; then core=true; fi
           else
-            # The next push or a manual run with deploy_core catches up.
-            echo "::warning title=Live core version unknown::Could not read https://anarchist-archive.subcult.tv/api/version, so the core is not deployed. Rerun, or run the workflow on main with deploy_core."
+            echo "::warning title=Live core version unknown::Deploying the pinned core before the frontend."
+            core=true
           fi
           if [ "$EVENT" = workflow_dispatch ] && [ "$DISPATCH_CORE" = true ]; then core=true; fi
           # A wrapper change needs a new core image even when the version
@@ -113,12 +113,12 @@ jobs:
           else
             echo "::warning title=Last core deploy unknown::Comparing deploy/core.Dockerfile with $base only."
           fi
-          if ! git diff --quiet "$base" "$DEPLOY_REVISION" -- deploy/core.Dockerfile; then
+          if ! git diff --quiet "$base" "$DEPLOY_REVISION" -- deploy/archive-core.env deploy/core-release.json deploy/core.Dockerfile; then
             echo "deploy/core.Dockerfile changed since $base"; core=true
           fi
           if [ "$core" = true ] && [ "$ENABLED" != true ]; then
             echo "::warning title=Core not deployed::The pinned core differs from the live one, but CORE_DEPLOY_ENABLED is not 'true'. Deploy the core by hand (docs/runbooks/shared-core-release.md)."
-            core=false
+            exit 1
           fi
           echo "core=$core" >> "$GITHUB_OUTPUT"
           echo "Deploy the core: $core"
@@ -237,9 +237,7 @@ jobs:
             "https://anarchist-archive.subcult.tv/api/version?deploy-check=$DEPLOY_REVISION" > "$d/version.json"
           # Cores before 0.4.11 do not report core_version; the receiver's checks still passed.
           live=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("core_version", ""))' "$d/version.json")
-          if [ -z "$live" ]; then
-            echo "::warning title=Core version not reported::anarchist-archive.subcult.tv runs a core older than 0.4.11, which does not report core_version"
-          elif [ "$live" != "$CORE_VERSION" ]; then
+          if [ "$live" != "$CORE_VERSION" ]; then
             echo "::error title=Live core version differs::anarchist-archive.subcult.tv reports $live, pinned $CORE_VERSION"; exit 1
           fi
           printf 'anarchist-archive.subcult.tv runs core %s from %s\n' "$live" "$DEPLOY_REVISION"

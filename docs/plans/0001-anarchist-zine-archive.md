@@ -6,6 +6,14 @@ Next phases: [managed operations, public release, and second archive](0002-manag
 Evidence: [October 2 qualification report](../reports/pilot-qualification-20261002.md).
 Date: 2026-10-02. Source: https://archive.org/details/ZineArchive.
 
+## November 15, 2026 service transition
+
+The public catalog is at `anarchist-archive.subcult.tv`; `arkhiv.subcult.tv` is
+the product page. The catalog now uses the shared core with 699 documents and
+700 variants. Acquisition is paused by owner decision until its job is migrated
+to the core. See the [core runbook](../runbooks/shared-core-release.md) for
+backup, deployment and rollback procedures.
+
 ## Outcome
 
 A visitor can browse 25–50 reviewed zines, open a document in the site's reader,
